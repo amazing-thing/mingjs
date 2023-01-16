@@ -1,0 +1,10 @@
+node_modules
+.DS_Store
+.history
+.idea
+.eslintcache
+.pnpm-debug.log
+*.local
+dist
+types
+coverage
