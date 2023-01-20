@@ -14,8 +14,8 @@ hero:
       text: 快速开始
       link: /guide/
     - theme: alt
-      text: 工具函数集合
-      link: /core/getDevice/
+      text: 工具函数
+      link: /utils/
     - theme: alt
       text: View on GitHub
       link: https://github.com/amazing-thing

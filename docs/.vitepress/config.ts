@@ -10,8 +10,18 @@ export default defineConfig({
     },
     nav: [
       { text: '指南', link: '/guide/' },
-      { text: '集合', link: '/utils/' },
+      { text: '工具函数', link: '/utils/' },
     ],
+    sidebar: {
+      '/guide/': [
+        {
+          text: '基础',
+          items: [
+            { text: '快速开始', link: '/guide/' },
+          ],
+        },
+      ],
+    },
   },
 
 })
