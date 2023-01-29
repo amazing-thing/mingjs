@@ -16,7 +16,10 @@
     "prepare": "husky install",
     "dev": "tsup --watch",
     "build": "tsup",
-    "release": "changeset publish"
+    "change": "changeset add",
+    "change:version": "changeset version",
+    "release": "pnpm build && pnpm release:only",
+    "release:only": "changeset publish"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.34.1",

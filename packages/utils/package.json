@@ -1,10 +1,13 @@
 {
   "name": "@mingjs/utils",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "便捷的工具库",
   "author": "xiaoming",
   "license": "MIT",
-  "keywords": ["工具库", "vue3二次封装组件库"],
+  "keywords": [
+    "工具库",
+    "vue3二次封装组件库"
+  ],
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
