@@ -14,7 +14,7 @@ hero:
       text: 快速开始
       link: /guide/
     - theme: alt
-      text: 工具函数
+      text: 工具
       link: /utils/
     - theme: alt
       text: View on GitHub
