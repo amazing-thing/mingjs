@@ -1,5 +1,11 @@
 import { isClient } from '../common'
 
+/**
+ * 文件下载
+ * @param url string
+ * @param name string
+ * @returns
+ */
 export async function downloadFile(url: string, name = 'unnamed') {
   if (!isClient)
     return Promise.reject(new Error('当前环境有误'))

@@ -25,7 +25,6 @@ export function hasClass(el: Element | undefined, cls: string) {
     throw new Error('className should not contain space.')
   if (el.classList)
     return el.classList.contains(cls)
-
   else
     return (` ${el.className} `).includes(` ${cls} `)
 }
@@ -39,11 +38,13 @@ export function hasClass(el: Element | undefined, cls: string) {
 export function addClass(el: Element | undefined, cls: string) {
   if (!el)
     return
+
   let curClass = el.className
   const classes = (cls || '').split(' ')
 
   for (let i = 0, j = classes.length; i < j; i++) {
     const clsName = classes[i]
+
     if (!clsName)
       continue
 
@@ -55,6 +56,7 @@ export function addClass(el: Element | undefined, cls: string) {
         curClass += ` ${clsName}`
     }
   }
+
   if (!el.classList)
     el.className = curClass
 }
@@ -68,6 +70,7 @@ export function addClass(el: Element | undefined, cls: string) {
 export function removeClass(el: Element | undefined, cls: string) {
   if (!el || !cls)
     return
+
   const classes = cls.split(' ')
   let curClass = ` ${el.className} `
 
@@ -84,6 +87,7 @@ export function removeClass(el: Element | undefined, cls: string) {
         curClass = curClass.replace(` ${clsName} `, ' ')
     }
   }
+
   if (!el.classList)
     el.className = trim(curClass)
 }

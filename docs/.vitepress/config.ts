@@ -23,9 +23,18 @@ export default defineConfig({
       ],
       '/utils/': [
         {
+          text: '声明',
+          items: [{ text: '免责声明', link: '/utils/disclaimer/' }],
+        },
+        {
           text: '工具函数',
           items: [
-            { text: 'isClient', link: '/utils/function/' },
+            { text: 'trim', link: '/utils/function/trim.md' },
+            { text: 'isClient', link: '/utils/function/isClient.md' },
+            { text: 'hasClass', link: '/utils/function/hasClass.md' },
+            { text: 'addClass', link: '/utils/function/addClass.md' },
+            { text: 'removeClass', link: '/utils/function/removeClass.md' },
+            { text: 'downloadFile', link: '/utils/function/downloadFile.md' },
           ],
         },
         {

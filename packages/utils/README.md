@@ -26,4 +26,4 @@ console.log(has) // true||false
 </script>
 ```
 
-各类工具函数来自从各种UI库，或者来自各类博客、社区中，如有侵权，请在[Issues](https://github.com/amazing-thing/mingjs/issues)中提出
+各类工具函数来自从各种UI库，或者来自各类博客、社区中，如有侵权，请在[Issues](https://github.com/amazing-thing/mingjs/issues)中告知
