@@ -1,0 +1,13 @@
+{
+  "name": "@mingjs/components",
+  "version": "1.0.0",
+  "description": "",
+  "author": "",
+  "license": "MIT",
+  "keywords": [],
+  "main": "index.js",
+  "peerDependencies": {
+    "ant-design-vue": "^3.2.15",
+    "gsap": "^3.11.4"
+  }
+}

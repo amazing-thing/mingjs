@@ -1,146 +1,134 @@
-<script>
+<script setup lang="ts">
 import gsap from 'gsap'
 import { useElementSize } from '@vueuse/core'
+import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
 
-export default {
-  name: 'TableScroll',
-  props: {
-    columns: {
-      type: Array,
-      default: () => [],
-    },
-    dataSource: {
-      type: Array,
-      default: () => [],
-    },
-    id: {
-      type: String,
-      default: 'once',
-    },
-    /**
-  * 滑动单位距离需要的时间(s)
-  */
-    duration: {
-      type: Number,
-      default: 1,
-    },
-    /**
-  * 两次滑动之间的停顿时长(s)
-  */
-    delay: {
-      type: Number,
-      default: 2,
-    },
-  },
-  data() {
-    return {
-      scrollY: 0,
-      scrollingElIndex: 0,
-      topBoxHeight: 0, // 条目数高度
-    }
-  },
-  watch: {
-    topBoxHeight(e) {
-      if (e > 0)
-        this.update()
-    },
-  },
-  mounted() {
-    window[`timeLine__only__${this.id}`] = gsap.timeline()
+const props = withDefaults(defineProps<{
+  columns: any[]
+  dataSource: any[]
+  id: string
+  duration: number
+  delay: number
+}>(), {
+  columns: () => [],
+  dataSource: () => [],
+  id: 'once',
+  duration: 1,
+  delay: 2,
+})
 
-    this.getTableScrollY()
+const scrollY = ref(0)
+const scrollingElIndex = ref(0)
+const topBoxHeight = ref(0)
+const tableArea = ref(null)
 
-    const { height: topBoxHeight } = useElementSize(document.querySelector(`#${this.id} .ant-table-tbody`))
-    this.topBoxHeight = topBoxHeight
+watch(topBoxHeight, (e) => {
+  if (e > 0)
+    update()
+})
+
+onMounted(() => {
+  window.timeLine__obj[props.id] = gsap.timeline()
+
+  getTableScrollY()
+
+  const el = ref(document.querySelector(`#${props.id} .ant-table-tbody`)) as any as HTMLElement
+
+  const { height } = useElementSize(el)
+  topBoxHeight.value = height.value
 
   // window.onresize = this.getTableScrollY
-  },
-  unmounted() {
-  // 清除引用
-    window[`timeLine__only__${this.id}`] = null
-  },
-  methods: {
-  // 自适应table是否有滚动条
-    getTableScrollY() {
-      // .parent.getBoundingClientRect().height
-      const tableAreaHeight = this.$refs.tableArea.parentElement.getBoundingClientRect().height
-      const tableHeadHeight = document.querySelector(`#${this.id} .ant-table-header`).scrollHeight
+})
 
-      this.scrollY = tableAreaHeight - tableHeadHeight
-    },
-    autoScroll() {
-      const body = document.querySelector(`#${this.id} .ant-table-body`)
-      const tbody = document.querySelector(`#${this.id} .ant-table-tbody`)
+onUnmounted(() => {
+  window.timeLine__obj[props.id] = null
+})
 
-      const nodeArr = [...tbody.children].splice(1)
+// 自适应table是否有滚动条
+function getTableScrollY() {
+  // .parent.getBoundingClientRect().height
+  // 怎么转，主播不会转，只会这样弄了
+  const el = tableArea.value! as HTMLElement
+  const tableAreaHeight = el.parentElement!.getBoundingClientRect().height
+  const tableHeadHeight = document.querySelector(`#${props.id} .ant-table-header`)!.scrollHeight
 
-      // 等待列表渲染出来
-      if (!(nodeArr[0].className.includes('ant-table-row')))
-        return
+  scrollY.value = tableAreaHeight - tableHeadHeight
+}
 
-      // 条目数不够自动轮播时触发
-      if (this.topBoxHeight < this.scrollY)
-        return
-
-      const currentScrollingEl = nodeArr[this.scrollingElIndex]
-      this.scrollingElIndex = this.scrollingElIndex + 1
-
-      if (!currentScrollingEl)
-        return
-
-      const rect = currentScrollingEl.getBoundingClientRect()
-      const elHeight = rect.height
-      const offsetTop = currentScrollingEl.offsetTop
-      const scrollTarget = offsetTop + elHeight
-      const scrollAreaHeight = this.topBoxHeight
-      const willScrollToEdge = scrollTarget >= scrollAreaHeight
-
-      // 最后一个显示时，回到第一个
-      if (body.clientHeight + offsetTop >= this.topBoxHeight) {
-        window[`timeLine__only__${this.id}`].to(body, { scrollTop: 0, duration: this.duration }, `+=${this.delay}`)
-        this.scrollingElIndex = 0
-        return
-      }
-
-      if (!willScrollToEdge) {
-        window[`timeLine__only__${this.id}`].to(body, { scrollTop: scrollTarget, duration: this.duration }, `+=${this.delay}`)
-        return
-      }
-      window[`timeLine__only__${this.id}`].to(body, { scrollTop: scrollAreaHeight, duration: this.duration }, `+=${this.delay}`)
-    },
-    update() {
-      window[`timeLine__only__${this.id}`].eventCallback('onComplete', () => {
-        if (this.scrollingElIndex === 0) {
-          gsap.to(`#${this.id} .ant-table-body`, {
-            scrollTop: 0,
-            duration: 0,
-            onComplete: () => {
-              this.autoScroll()
-            },
-          })
-          return
-        }
-        this.autoScroll()
+function update() {
+  window.timeLine__obj[props.id].eventCallback('onComplete', () => {
+    if (scrollingElIndex.value === 0) {
+      gsap.to(`#${props.id} .ant-table-body`, {
+        scrollTop: 0,
+        duration: 0,
+        onComplete: () => {
+          autoScroll()
+        },
       })
-      this.autoScroll()
-    },
-    pause() {
-      window[`timeLine__only__${this.id}`].pause()
-    },
-    resume() {
-      window[`timeLine__only__${this.id}`].resume()
-    },
-    initStatus() {
-      window[`timeLine__only__${this.id}`].clear()
-      this.scrollingElIndex = 0
-      this.update()
-    },
-  },
+      return
+    }
+    autoScroll()
+  })
+  autoScroll()
+}
+
+function autoScroll() {
+  const body = document.querySelector(`#${props.id} .ant-table-body`)!
+  const tbody = document.querySelector(`#${props.id} .ant-table-tbody`)!
+
+  const nodeArr = [...tbody.children].splice(1) as HTMLElement[]
+
+  // 等待列表渲染出来
+  if (!(nodeArr[0].className.includes('ant-table-row')))
+    return
+
+  // 条目数不够自动轮播时触发
+  if (topBoxHeight.value < scrollY.value)
+    return
+
+  const currentScrollingEl = nodeArr[scrollingElIndex.value]
+  scrollingElIndex.value = scrollingElIndex.value + 1
+
+  if (!currentScrollingEl)
+    return
+
+  const rect = currentScrollingEl.getBoundingClientRect()
+  const elHeight = rect.height
+  const offsetTop = currentScrollingEl.offsetTop
+  const scrollTarget = offsetTop + elHeight
+  const scrollAreaHeight = topBoxHeight
+  const willScrollToEdge = scrollTarget >= scrollAreaHeight.value
+
+  // 最后一个显示时，回到第一个
+  if (body.clientHeight + offsetTop >= topBoxHeight.value) {
+    window.timeLine__obj[props.id].to(body, { scrollTop: 0, duration: props.duration }, `+=${props.delay}`)
+    scrollingElIndex.value = 0
+    return
+  }
+
+  if (!willScrollToEdge) {
+    window.timeLine__obj[props.id].to(body, { scrollTop: scrollTarget, duration: props.duration }, `+=${props.delay}`)
+    return
+  }
+  window.timeLine__obj[props.id].to(body, { scrollTop: scrollAreaHeight, duration: props.duration }, `+=${props.delay}`)
+}
+
+function pause() {
+  window.timeLine__obj[props.id].pause()
+}
+function resume() {
+  window.timeLine__obj[props.id].resume()
+}
+</script>
+
+<script>
+export default {
+  name: 'TableScroll',
 }
 </script>
 
 <template>
-  <div :id="id" ref="tableArea" class="table-area" @mouseover="pause" @mouseout="resume">
+  <div :id="id" ref="tableArea" @mouseover="pause" @mouseout="resume">
     <a-table ref="tables" :columns="columns" :data-source="dataSource" :scroll="{ y: scrollY }" :pagination="false" />
   </div>
 </template>
