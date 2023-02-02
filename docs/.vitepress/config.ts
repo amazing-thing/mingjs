@@ -40,6 +40,7 @@ export default defineConfig({
         {
           text: '指令',
           items: [
+            { text: '说明', link: '/utils/redirect/' },
             { text: 'v-ellipsis', link: '/utils/redirect/ellipsis.md' },
           ],
         },
