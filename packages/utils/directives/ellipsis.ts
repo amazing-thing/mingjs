@@ -7,7 +7,7 @@ import { addClass, removeClass } from '../common/index'
 export default {
   mounted(el, binding: DirectiveBinding) {
     if (binding.value) {
-      addClass(el, 'ivu-line-clamp')
+      addClass(el, 'ming-ellipsis')
       el.style['-webkit-line-clamp'] = binding.value
     }
   },
@@ -16,7 +16,7 @@ export default {
       el.style['-webkit-line-clamp'] = binding.value
   },
   unmounted(el) {
-    removeClass(el, 'ivu-line-clamp')
+    removeClass(el, 'ming-ellipsis')
     el.style['-webkit-line-clamp'] = null
   },
 } as Directive
