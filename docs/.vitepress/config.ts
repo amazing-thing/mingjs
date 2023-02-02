@@ -40,13 +40,19 @@ export default defineConfig({
         {
           text: '指令',
           items: [
-            { text: 'v-ellsp', link: '/utils/redirect/' },
+            { text: 'v-ellipsis', link: '/utils/redirect/ellipsis.md' },
           ],
         },
         {
           text: '组件',
           items: [
             { text: 'antdVue+table内容自适应滚动', link: '/utils/component/' },
+          ],
+        },
+        {
+          text: '其他',
+          items: [
+            { text: 'vscode插件', link: '/utils/other/vscodePlugin.md' },
           ],
         },
       ],

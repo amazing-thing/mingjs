@@ -10,3 +10,11 @@ import { isClient } from '@mingjs/utils'
 
 console.log(isClient) // true or false
 ```
+
+## 实现
+```ts
+/**
+ * isClient 查看当前是否浏览器环境
+ */
+export const isClient = typeof window !== 'undefined'
+```
