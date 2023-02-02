@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import gsap from 'gsap'
 import { useElementSize } from '@vueuse/core'
-import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
+import { onMounted, onUnmounted, ref, watch } from 'vue'
 
 const props = withDefaults(defineProps<{
   columns: any[]
