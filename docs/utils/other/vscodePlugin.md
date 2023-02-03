@@ -6,7 +6,7 @@
 - **Better Comments - 注释高亮**
 - **Code Runner - 文件启动**
 - **Color HighLight - 颜色高亮**
-- **Code Novel - 代码注释小说** 
+- **Code Novel - 代码注释小说**
 - **Carbon Product Icons - vscode图标更改**
 - **Code Spell Checker - 单词检查**
 - **Error Lens - 错误在同一行展示**
@@ -22,16 +22,19 @@
 - **open in browser - 在浏览器打开**
 - **Path Intellisense - 路径提示（需要配置）**
 - **Prettier - Code formatter 格式化**
-- **SVG - SVG语法补全，预览** 
+- **SVG - SVG语法补全，预览**
 - **Time Master - 记录每日代码时间数量**
 - **TypeScript Importer - ts导入支持**
-- **Vetur - Vue2插件 与Volar有冲突** 
-- **Volar - Vue2插件 与Volar有冲突** 
-- **Vite - Vite插件，Vite项目自动启动** 
-- **vscode-icons - 文件图标** 
-- **Where Am I? - 获知当前文件名，展示在左下角提示** 
+- **Vetur - Vue2插件 与Volar有冲突**
+- **Volar - Vue2插件 与Volar有冲突**
+- **Vite - Vite插件，Vite项目自动启动**
+- **vscode-icons - 文件图标**
+- **Where Am I? - 获知当前文件名，展示在左下角提示**
+
 ---
+
 - **vscode settings.json 配置 [源自antfu配置](https://github.com/antfu/vscode-settings/blob/main/.vscode/settings.json)**
+
 ```json
 {
   "terminal.integrated.profiles.windows": {
@@ -292,4 +295,3 @@
   "debug.javascript.autoAttachFilter": "disabled"
 }
 ```
-

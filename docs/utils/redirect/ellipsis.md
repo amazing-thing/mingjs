@@ -1,10 +1,11 @@
-# v-ellipsis 
+# v-ellipsis
 
 ::: tip 说明
 限制文本最多显示几行，以...结束，仅适用于 webkit 内核浏览器  
 :::
 
 ## 使用方式
+
 ```vue{1,5}
 <div v-ellipsis="1">
 一行
@@ -25,9 +26,11 @@
     overflow: hidden;
 }
 ```
-:::
 
+:::
+  
 ## 实现
+
 ```ts
 /**
  * 限制文本最多显示几行，以...结束，仅适用于 webkit 内核浏览器
@@ -51,4 +54,14 @@ export default {
     el.style['-webkit-line-clamp'] = null
   },
 } as Directive
+```
+
+## 普通单行兼容版本
+
+```css
+.className{
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+}
 ```

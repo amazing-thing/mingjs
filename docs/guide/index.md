@@ -11,6 +11,7 @@ npm i @mingjs/utils
 ```
 
 ## 简单使用
+
   **hasClass** 查看元素上是否有相关类
 
 ``` vue
@@ -25,4 +26,3 @@ const has = hasClass(el, 'className1')
 console.log(has) // true or false
 </script>
 ```
-

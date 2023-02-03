@@ -1,7 +1,7 @@
 # 说明
 
-
 ## 指令全局注册
+
 ```ts
 import { createApp } from 'vue'
 import mingjs from '@mingjs/utils'
