@@ -1,5 +1,11 @@
 # @mingjs/utils
 
+## 1.1.0
+
+### Minor Changes
+
+- 新增文本省略号指令
+
 ## 1.0.3
 
 ### Patch Changes
