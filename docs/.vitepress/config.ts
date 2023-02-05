@@ -11,6 +11,7 @@ export default defineConfig({
     nav: [
       { text: '指南', link: '/guide/' },
       { text: '工具', link: '/utils/' },
+      { text: '随笔', link: '/diary/' },
     ],
     sidebar: {
       '/guide/': [
