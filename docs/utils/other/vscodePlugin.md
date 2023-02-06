@@ -15,10 +15,12 @@
 - **Goto definition alias - 去到定义的文件而不是.d.ts文件**
 - **HTML CSS Support - HTML CSS支持**
 - **Iconify IntelliSense - 图标展示、提示**
+- **Import Cost - 显示引入包的大小**
 - **Image preview - 图片预览**
 - **JavaScript (ES6) code snippets - ES6支持**
 - **Live Server - 开启服务器**
 - **Move TS - Move TypeScript files and update relative imports - 修改文件路径时，其他文件的引入路径也一起修改（详情看操作->右键move xxx）**
+- **markdownlint - markdown lint**
 - **open in browser - 在浏览器打开**
 - **Path Intellisense - 路径提示（需要配置）**
 - **Prettier - Code formatter 格式化**
@@ -45,13 +47,18 @@
       ]
     }
   },
-  "typescript.inlayHints.parameterTypes.enabled": true,
-  "typescript.inlayHints.functionLikeReturnTypes.enabled": true,
-  "typescript.inlayHints.parameterNames.enabled": "literals",
+  "markdownlint.config": {
+    "default": true,
+    "MD033": false,
+    "MD001": false
+  },
+  "css.validate": false,
+  "less.validate": false,
+  "scss.validate": false,
   "typescript.suggest.paths": false,
   "javascript.suggest.paths": false,
   "editor.accessibilitySupport": "off",
-  "editor.cursorSmoothCaretAnimation": true,
+  "editor.cursorSmoothCaretAnimation": "on",
   "editor.find.addExtraSpaceOnTop": false,
   "editor.fontSize": 14,
   "editor.glyphMargin": true,
@@ -68,21 +75,12 @@
     "source.fixAll.eslint": true, // this allows ESLint to auto fix on save
     "source.organizeImports": false
   },
-  "[vue]": {
-    "editor.defaultFormatter": "Vue.volar"
-  },
-  "[markdown]": {
-    "editor.defaultFormatter": "DavidAnson.vscode-markdownlint"
-  },
   "explorer.confirmDelete": false,
   "explorer.confirmDragAndDrop": false,
   "window.autoDetectColorScheme": true,
   "window.dialogStyle": "custom",
   "window.nativeTabs": true, // this is great, macOS only
   "window.titleBarStyle": "custom",
-  "window.commandCenter": false,
-  "window.menuBarVisibility": "compact",
-  "workbench.iconTheme": "vscode-icons",
   "workbench.activityBar.visible": true,
   "workbench.editor.closeOnFileDelete": true,
   "workbench.editor.highlightModifiedTabs": true,
@@ -96,7 +94,6 @@
   "terminal.integrated.defaultProfile.windows": "PowerShell",
   "workbench.fontAliasing": "antialiased",
   "workbench.list.smoothScrolling": true,
-  "workbench.productIconTheme": "icons-carbon",
   "workbench.sideBar.location": "left",
   "workbench.startupEditor": "newUntitledFile",
   "workbench.tree.expandMode": "singleClick",
@@ -106,7 +103,6 @@
   "files.eol": "\n",
   "files.insertFinalNewline": true,
   "files.simpleDialog.enable": true,
-  "files.autoSave": "onFocusChange",
   "git.autofetch": true,
   "git.confirmSync": false,
   "git.enableSmartCommit": true,
@@ -118,7 +114,6 @@
   "terminal.integrated.tabs.enabled": true,
   "scm.diffDecorationsGutterWidth": 2,
   "debug.onTaskErrors": "debugAnyway",
-  "debug.javascript.autoAttachFilter": "disabled",
   "diffEditor.ignoreTrimWhitespace": false,
   "search.exclude": {
     "**/.git": true,
@@ -309,6 +304,26 @@
     "svelte.config.*": "*.env, .babelrc*, .codecov, .cssnanorc*, .env.*, .envrc, .htmlnanorc*, .lighthouserc.*, .mocha*, .postcssrc*, .terserrc*, api-extractor.json, ava.config.*, babel.config.*, contentlayer.config.*, cssnano.config.*, cypress.*, env.d.ts, formkit.config.*, formulate.config.*, histoire.config.*, htmlnanorc.*, jasmine.*, jest.config.*, jsconfig.*, karma*, lighthouserc.*, mdsvex.config.js, playwright.config.*, postcss.config.*, puppeteer.config.*, svgo.config.*, tailwind.config.*, tsconfig.*, tsdoc.*, unocss.config.*, vitest.config.*, webpack.config.*, windi.config.*",
     "vite.config.*": "*.env, .babelrc*, .codecov, .cssnanorc*, .env.*, .envrc, .htmlnanorc*, .lighthouserc.*, .mocha*, .postcssrc*, .terserrc*, api-extractor.json, ava.config.*, babel.config.*, contentlayer.config.*, cssnano.config.*, cypress.*, env.d.ts, formkit.config.*, formulate.config.*, histoire.config.*, htmlnanorc.*, jasmine.*, jest.config.*, jsconfig.*, karma*, lighthouserc.*, playwright.config.*, postcss.config.*, puppeteer.config.*, svgo.config.*, tailwind.config.*, tsconfig.*, tsdoc.*, unocss.config.*, vitest.config.*, webpack.config.*, windi.config.*",
     "vue.config.*": "*.env, .babelrc*, .codecov, .cssnanorc*, .env.*, .envrc, .htmlnanorc*, .lighthouserc.*, .mocha*, .postcssrc*, .terserrc*, api-extractor.json, ava.config.*, babel.config.*, contentlayer.config.*, cssnano.config.*, cypress.*, env.d.ts, formkit.config.*, formulate.config.*, histoire.config.*, htmlnanorc.*, jasmine.*, jest.config.*, jsconfig.*, karma*, lighthouserc.*, playwright.config.*, postcss.config.*, puppeteer.config.*, svgo.config.*, tailwind.config.*, tsconfig.*, tsdoc.*, unocss.config.*, vitest.config.*, webpack.config.*, windi.config.*"
+  },
+  "typescript.inlayHints.parameterTypes.enabled": true,
+  "typescript.inlayHints.functionLikeReturnTypes.enabled": true,
+  "typescript.inlayHints.parameterNames.enabled": "literals",
+  "files.autoSave": "onFocusChange",
+  "debug.javascript.autoAttachFilter": "disabled",
+  "workbench.iconTheme": "vscode-icons",
+  "workbench.productIconTheme": "icons-carbon",
+  "[vue]": {
+    "editor.defaultFormatter": "Vue.volar"
+  },
+  "cssrem.vwDesign": 1920,
+  "cssrem.rootFontSize": 80,
+  "window.commandCenter": false,
+  "window.menuBarVisibility": "compact",
+  "[jsonc]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "[markdown]": {
+    "editor.defaultFormatter": "DavidAnson.vscode-markdownlint"
   }
 }
 ```
