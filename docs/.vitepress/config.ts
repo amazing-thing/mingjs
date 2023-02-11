@@ -55,6 +55,7 @@ export default defineConfig({
           text: '其他',
           items: [
             { text: '库积累', link: '/utils/other/library.md' },
+            { text: 'CSS', link: '/utils/other/css.md' },
             { text: '小知识点', link: '/utils/other/knowledgePoint.md' },
             { text: 'vscode插件', link: '/utils/other/vscodePlugin.md' },
           ],
