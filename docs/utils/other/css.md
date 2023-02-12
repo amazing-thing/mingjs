@@ -5,7 +5,7 @@
 > 可以创建一个只有元素的部分区域可以显示的剪切区域。区域内的部分显示，区域外的隐藏。剪切区域是被引用内嵌的URL定义的路径或者外部svg的路径，或者作为一个形状。  
 > [相关文章](https://blog.csdn.net/weixin_44116302/article/details/98882841)
 
-```html
+```html [6]
 <style>
 .outer{
   width:100px;
@@ -24,7 +24,7 @@
 > CSS Shapes布局用于实现不规则的图文环绕效果，需配合float一起使用。
 > [相关文章](https://blog.csdn.net/weixin_41192489/article/details/120978607) and [相关文章2](https://blog.csdn.net/cwyp18809/article/details/105097750)
 
-```html
+```html [13]
 <style>
 .shape {
   float: left;
@@ -54,7 +54,7 @@
 > 图片内容轮廓阴影  
 > [相关文章](https://www.jb51.net/css/796860.html)
 
-```html
+```html [8]
 <style>
 div {
   width: 200px;
