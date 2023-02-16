@@ -91,3 +91,52 @@ export function removeClass(el: Element | undefined, cls: string) {
   if (!el.classList)
     el.className = trim(curClass)
 }
+
+/**
+  * 检查文件后缀名是否符合
+  * @param { String } fileName 文件名
+  * @param { Array } suffixArray 允许的后缀
+  * @returns
+  */
+export function checkFileSuffix(fileName = '', suffixArray: string[] = []) {
+  if (!fileName || suffixArray.length === 0)
+    return false
+
+  const name = fileName.split('.').pop()?.toLowerCase()
+
+  if (!name)
+    return false
+
+  if (!suffixArray.includes(name))
+    return false
+
+  return true
+}
+
+/**
+ * 给数字加逗号
+ * @param num
+ * @returns
+ */
+export function addComma(num: string | number) {
+  if (!num)
+    return '0'
+
+  let result = ''
+
+  const numArr = (`${num}`).split('.')
+
+  let int = numArr[0]
+
+  const decmial = numArr[1] ? `.${numArr[1]}` : ''
+
+  while (int.length > 3) {
+    result = `,${int.slice(-3)}${result}`
+    int = int.slice(0, int.length - 3)
+  }
+
+  if (int)
+    result = int + result
+
+  return result + decmial
+}

@@ -9,3 +9,4 @@ dist
 types
 coverage
 docs/.vitepress/cache/**
+.changeset

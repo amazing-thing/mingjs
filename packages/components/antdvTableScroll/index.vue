@@ -1,43 +1,49 @@
 <script setup lang="ts">
 import gsap from 'gsap'
-import { useElementSize } from '@vueuse/core'
-import { onMounted, onUnmounted, ref, watch } from 'vue'
+import { useEventListener } from '@vueuse/core'
+import { defineComponent, onMounted, onUnmounted, ref, watch } from 'vue'
 
 const props = withDefaults(defineProps<{
-  columns: any[]
-  dataSource: any[]
-  id: string
-  duration: number
-  delay: number
+  id?: string
+  duration?: number
+  delay?: number
+  autoScroll?: boolean
+  scroll?: object
 }>(), {
-  columns: () => [],
-  dataSource: () => [],
   id: 'once',
   duration: 1,
   delay: 2,
+  autoScroll: false,
 })
 
-const scrollY = ref(0)
-const scrollingElIndex = ref(0)
-const topBoxHeight = ref(0)
-const tableArea = ref(null)
+const scrollY = ref(0) // 滚动条高度
+const scrollingElIndex = ref(0) // 滚动个数
+const tableBodyHeight = ref(0) // table内容高度
+const tableRef = ref<HTMLElement>() // 帮助获取滚动条高度
+const initScroll = ref({ ...props.scroll })
 
-watch(topBoxHeight, (e) => {
-  if (e > 0)
+watch(tableBodyHeight, (e) => {
+  if (e > 0 && props.autoScroll)
     update()
 })
 
+watch(tableRef, () => {
+  getTableScrollY()
+})
+
 onMounted(() => {
+  // 判断window上有没有timeLine__obj，没有则赋值
+  if (!window.timeLine__obj)
+    window.timeLine__obj = {}
+
   window.timeLine__obj[props.id] = gsap.timeline()
 
-  getTableScrollY()
+  const height = tableRef.value!.querySelector('.ant-table-tbody')!.scrollHeight
 
-  const el = ref(document.querySelector(`#${props.id} .ant-table-tbody`)) as any as HTMLElement
+  tableBodyHeight.value = height
 
-  const { height } = useElementSize(el)
-  topBoxHeight.value = height.value
-
-  // window.onresize = this.getTableScrollY
+  // 尺寸发生变化时重新获取高度
+  useEventListener('resize', getTableScrollY)
 })
 
 onUnmounted(() => {
@@ -46,13 +52,19 @@ onUnmounted(() => {
 
 // 自适应table是否有滚动条
 function getTableScrollY() {
+  if (!props.autoScroll)
+    return
+
   // .parent.getBoundingClientRect().height
   // 怎么转，主播不会转，只会这样弄了
-  const el = tableArea.value! as HTMLElement
-  const tableAreaHeight = el.parentElement!.getBoundingClientRect().height
-  const tableHeadHeight = document.querySelector(`#${props.id} .ant-table-header`)!.scrollHeight
+  const el = tableRef.value! as HTMLElement
+  // 父元素高度
 
-  scrollY.value = tableAreaHeight - tableHeadHeight
+  const tableParentHeight = el.parentElement!.getBoundingClientRect().height
+  // 表头高度
+  const tableHeaderHeight = tableRef.value!.querySelector('.ant-table-thead')!.scrollHeight
+  scrollY.value = tableParentHeight - tableHeaderHeight
+  initScroll.value = { ...initScroll.value, y: scrollY.value }
 }
 
 function update() {
@@ -73,8 +85,14 @@ function update() {
 }
 
 function autoScroll() {
-  const body = document.querySelector(`#${props.id} .ant-table-body`)!
-  const tbody = document.querySelector(`#${props.id} .ant-table-tbody`)!
+  if (!props.autoScroll)
+    return
+
+  const body = tableRef.value?.querySelector('.ant-table-body')
+  const tbody = tableRef.value?.querySelector('.ant-table-tbody')
+
+  if (!body || !tbody)
+    return
 
   const nodeArr = [...tbody.children].splice(1) as HTMLElement[]
 
@@ -83,7 +101,7 @@ function autoScroll() {
     return
 
   // 条目数不够自动轮播时触发
-  if (topBoxHeight.value < scrollY.value)
+  if (tableBodyHeight.value < scrollY.value)
     return
 
   const currentScrollingEl = nodeArr[scrollingElIndex.value]
@@ -96,20 +114,24 @@ function autoScroll() {
   const elHeight = rect.height
   const offsetTop = currentScrollingEl.offsetTop
   const scrollTarget = offsetTop + elHeight
-  const scrollAreaHeight = topBoxHeight
+  const scrollAreaHeight = tableBodyHeight
   const willScrollToEdge = scrollTarget >= scrollAreaHeight.value
 
   // 最后一个显示时，回到第一个
-  if (body.clientHeight + offsetTop >= topBoxHeight.value) {
+
+  if (body.clientHeight + offsetTop >= scrollAreaHeight.value) {
     window.timeLine__obj[props.id].to(body, { scrollTop: 0, duration: props.duration }, `+=${props.delay}`)
     scrollingElIndex.value = 0
     return
   }
 
+  // 滚动到下一个
   if (!willScrollToEdge) {
     window.timeLine__obj[props.id].to(body, { scrollTop: scrollTarget, duration: props.duration }, `+=${props.delay}`)
     return
   }
+
+  // 最后一个，没有下一个时，滚动到最底下
   window.timeLine__obj[props.id].to(body, { scrollTop: scrollAreaHeight, duration: props.duration }, `+=${props.delay}`)
 }
 
@@ -121,14 +143,16 @@ function resume() {
 }
 </script>
 
-<script>
-export default {
+<script lang="ts">
+export default defineComponent({
   name: 'TableScroll',
-}
+
+})
 </script>
 
 <template>
-  <div :id="id" ref="tableArea" @mouseover="pause" @mouseout="resume">
-    <a-table ref="tables" :columns="columns" :data-source="dataSource" :scroll="{ y: scrollY }" :pagination="false" />
+  {{ initScroll }}
+  <div :id="id" ref="tableRef" @mouseover="pause" @mouseout="resume">
+    <a-table v-bind="$attrs" :scroll="initScroll" />
   </div>
 </template>
