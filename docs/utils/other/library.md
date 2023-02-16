@@ -180,3 +180,41 @@ time.value = dayjs().to(1675111735862)
 ```
 
 :::
+
+## [vue-draggable-resizable](https://github.com/mauricius/vue-draggable-resizable)
+
+Vue2 Component 元素可伸缩拖拽
+
+```shell
+pnpm add vue-draggable-resizable 
+```
+
+```js
+import Vue from 'vue'
+import VueDraggableResizable from 'vue-draggable-resizable'
+
+// optionally import default styles
+import 'vue-draggable-resizable/dist/VueDraggableResizable.css'
+
+Vue.component('VueDraggableResizable', VueDraggableResizable)
+```
+
+## [vuedraggable](https://github.com/SortableJS/vue.draggable.next)
+
+[vue2版可拖拽中文版](https://www.itxst.com/vue-draggable/yvq3mifz.html)  
+[vue3版可拖拽中文版](https://www.itxst.com/vue-draggable-next/tutorial.html)
+
+```shell
+pnpm add vuedraggable // vue2
+pnpm add vuedraggable@next // vue3
+```
+
+```js
+import Vue from 'vue'
+import VueDraggableResizable from 'vue-draggable-resizable'
+
+// optionally import default styles
+import 'vue-draggable-resizable/dist/VueDraggableResizable.css'
+
+Vue.component('VueDraggableResizable', VueDraggableResizable)
+```
