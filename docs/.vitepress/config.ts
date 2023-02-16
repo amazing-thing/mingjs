@@ -35,7 +35,9 @@ export default defineConfig({
             { text: 'hasClass', link: '/utils/function/hasClass.md' },
             { text: 'addClass', link: '/utils/function/addClass.md' },
             { text: 'removeClass', link: '/utils/function/removeClass.md' },
+            { text: 'addComma', link: '/utils/function/addComma.md' },
             { text: 'downloadFile', link: '/utils/function/downloadFile.md' },
+            { text: 'checkFileSuffix', link: '/utils/function/checkFileSuffix.md' },
           ],
         },
         {
