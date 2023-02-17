@@ -124,7 +124,7 @@ export function addComma(num: string | number) {
 
   let result = ''
 
-  const numArr = (`${num}`).split('.')
+  const numArr = num.toString().split('.')
 
   let int = numArr[0]
 
