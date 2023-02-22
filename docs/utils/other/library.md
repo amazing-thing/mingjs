@@ -218,3 +218,25 @@ import 'vue-draggable-resizable/dist/VueDraggableResizable.css'
 
 Vue.component('VueDraggableResizable', VueDraggableResizable)
 ```
+
+## [pinyin](https://www.npmjs.com/package/pinyin)
+
+汉字拼音转换工具
+
+```shell
+pnpm add pinyin
+```
+
+```js
+import pinyin from 'pinyin'
+
+console.log(pinyin('中心')) // [ [ 'zhōng' ], [ 'xīn' ] ]
+```
+
+## [Inquirer.js](https://github.com/SBoudrias/Inquirer.js)
+
+Node.js的易于嵌入且美观的命令行界面
+
+```shell
+pnpm add inquirer
+```
