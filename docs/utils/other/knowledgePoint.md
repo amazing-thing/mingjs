@@ -84,3 +84,22 @@ Number.isInteger(25.1) // false
 Number.isInteger(25) // true
 Number.isInteger(25.0) // true
 ```
+
+## localeCompare字符串大小比较
+
+在日常使用sort进行排序时，对于有中文/数字+中文的内容，排序可能会造成混乱，所以可以使用js原生的localeCompare方法进行排序
+
+```js
+const strList = ['cc', 'ee', 'ca', 'aa']
+const strList2 = ['2c', '1e', '2a', '1a']
+
+strList.sort((a, b) => {
+  return a.localeCompare(b)
+})
+console.log(strList) // ['aa', 'ca', 'cc', 'ee']
+
+strList2.sort((a, b) => {
+  return a.localeCompare(b)
+})
+console.log(strList2) // ['1a', '1e', '2a', '2c']
+```
