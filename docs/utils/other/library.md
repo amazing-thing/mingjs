@@ -258,14 +258,8 @@ degit https://github.com/user/repo
 
 ## [favicons](https://www.npmjs.com/package/favicons)
 
-用于生成网站图标及其关联文件的Node.js 模块，也可以用来获取某个网站的favicon
+用于生成网站图标及其关联文件的Node.js 模块
 
 ```shell
 pnpm add favicons
-```
-
-```js
-import pinyin from 'pinyin'
-
-console.log(pinyin('中心')) // [ [ 'zhōng' ], [ 'xīn' ] ]
 ```
