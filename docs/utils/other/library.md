@@ -240,3 +240,32 @@ Node.js的易于嵌入且美观的命令行界面
 ```shell
 pnpm add inquirer
 ```
+
+## [degit](https://github.com/Rich-Harris/degit)
+
+简单的项目脚手架，如果使用git clone，会得到一个.git属于项目模板的文件夹，而不是你的项目。您很容易忘记重新初始化存储库，最终让自己感到困惑
+
+```shell
+npm install -g degit
+
+degit user/repo
+
+# these commands are equivalent
+degit github:user/repo
+degit git@github.com:user/repo
+degit https://github.com/user/repo
+```
+
+## [favicons](https://www.npmjs.com/package/favicons)
+
+用于生成网站图标及其关联文件的Node.js 模块，也可以用来获取某个网站的favicon
+
+```shell
+pnpm add favicons
+```
+
+```js
+import pinyin from 'pinyin'
+
+console.log(pinyin('中心')) // [ [ 'zhōng' ], [ 'xīn' ] ]
+```
