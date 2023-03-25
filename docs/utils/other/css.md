@@ -77,10 +77,7 @@ div {
 
 ## 文字渐变色
 
-> 图片内容轮廓阴影，只关注与内容  
-> [相关文章](https://www.jb51.net/css/796860.html)
-
-```html [8]
+```html
 <style>
 div {
   background-image:linear-gradient(yellow,red);
