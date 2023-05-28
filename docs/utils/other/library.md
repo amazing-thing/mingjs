@@ -263,3 +263,52 @@ degit https://github.com/user/repo
 ```shell
 pnpm add favicons
 ```
+
+## [depcheck](https://github.com/depcheck/depcheck)
+
+分析项目中依赖项的工具，用于查看每个依赖项是如何使用的，哪些依赖项是无用的，哪些依赖项从package.json中丢失了
+
+```shell
+pnpm install -g depcheck
+
+# use
+depcheck
+
+# 配置文件 .depcheckrc
+ignores: ["eslint", "babel-*"] # 需要忽略的检查项
+skip-missing: true # 指示 depcheck 是否跳过缺失依赖项的计算
+```
+
+## [FileSaver.js](https://github.com/eligrey/FileSaver.js)
+
+是在客户端保存文件的解决方案，非常适合在客户端生成文件的 Web 应用程序，但是如果文件来自服务器，我们建议您首先尝试使用 Content-Disposition附件响应标头，因为它具有更多的跨浏览器兼容性。
+
+```shell
+pnpm install file-saver --save
+# Additional typescript definitions
+npm install @types/file-saver --save-dev
+```
+
+## [devtools-detector](https://github.com/AEPKILL/devtools-detector)
+
+用于检测浏览器F12的打开关闭
+
+```shell
+pnpm install devtools-detector --save
+```
+
+```ts
+import { addListener, launch } from 'devtools-detector'
+const view = document.createElement('div')
+document.body.appendChild(view)
+
+// 1. add listener
+addListener(
+  isOpen =>
+    (view.innerText = isOpen
+      ? 'devtools status: open'
+      : 'devtools status: close')
+)
+// 2. launch detect
+launch()
+```

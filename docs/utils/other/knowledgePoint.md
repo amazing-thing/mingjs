@@ -103,3 +103,7 @@ strList2.sort((a, b) => {
 })
 console.log(strList2) // ['1a', '1e', '2a', '2c']
 ```
+
+## blob、arrayBuffer、file的区别
+
+[https://blog.csdn.net/weixin_39679664/article/details/111260811](https://blog.csdn.net/weixin_39679664/article/details/111260811)

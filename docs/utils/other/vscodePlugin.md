@@ -32,6 +32,7 @@
 - **Vite - Vite插件，Vite项目自动启动**
 - **vscode-icons - 文件图标**
 - **Where Am I? - 获知当前文件名，展示在左下角提示**
+- **Git Graph - 更直观的展示git分支情况** [相关文章](https://blog.csdn.net/weixin_43242506/article/details/123230514)
 
 ---
 

@@ -1,7 +1,10 @@
+// import fs from 'node:fs'
+// import path from 'node:path'
 import { defineConfig } from 'vitepress'
 
 export default defineConfig({
   lang: 'zh-CN',
+  lastUpdated: true,
   themeConfig: {
     siteTitle: 'mingjs',
     footer: {
@@ -62,10 +65,17 @@ export default defineConfig({
             { text: 'CSS', link: '/utils/other/css.md' },
             { text: '小知识点', link: '/utils/other/knowledgePoint.md' },
             { text: 'vscode插件', link: '/utils/other/vscodePlugin.md' },
-            { text: '网站分享', link: '/utils/other/websiteShare.md' },
+            { text: '网站分享', link: '/utils/other/websiteShare/websiteShare.md' },
           ],
         },
       ],
     },
+  },
+  markdown: {
+    // config: (md) => {
+    //   md.core.ruler.after('normalize', 'only_key', (state) => {
+    //     console.log(state)
+    //   })
+    // },
   },
 })

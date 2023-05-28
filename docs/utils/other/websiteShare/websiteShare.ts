@@ -76,4 +76,24 @@ export default [
     description: 'DiskGenius(磁盘分区软件)',
     website: 'https://www.diskgenius.cn/',
   },
+  {
+    description: 'JSON格式化验证编辑和可视化试图',
+    website: 'https://jsoncrack.com/editor',
+  },
+  {
+    description: 'JSON格式化验证和编辑 - JSONT',
+    website: 'https://www.jsont.run/',
+  },
+  {
+    description: '移除"此电脑"里面删不掉的快捷方式',
+    website: 'https://github.com/1357310795/MyComputerManager',
+  },
+  {
+    description: '地铁数据库 | 地铁客流量查询',
+    website: 'https://metrodb.org/',
+  },
+  {
+    description: '今日热榜',
+    website: 'https://tophub.today/',
+  },
 ] as WebsiteType[]
